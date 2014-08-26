@@ -1,0 +1,32 @@
+CC ?= gcc
+
+CFLAGS += -O3 -fPIC
+
+LIBPNG_SRC=\
+	png.c      \
+	pngerror.c \
+	pngget.c   \
+	pngmem.c   \
+	pngpread.c \
+	pngread.c  \
+	pngrio.c   \
+	pngrtran.c \
+	pngrutil.c \
+	pngset.c   \
+	pngtrans.c \
+	pngwio.c   \
+	pngwrite.c \
+	pngwtran.c \
+	pngwutil.c
+
+LIBPNG_OBJS=$(patsubst %.c,$(OUT_DIR)/%.o,$(LIBPNG_SRC))
+
+.PHONY: all
+all: $(OUT_DIR)/libpng.a
+	cp png.h pnglibconf.h pngconf.h $(OUT_DIR)
+
+$(OUT_DIR)/%.o: %.c
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+$(OUT_DIR)/libpng.a: $(LIBPNG_OBJS)
+	$(AR) rcs $@ $(LIBPNG_OBJS)

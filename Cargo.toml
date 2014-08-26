@@ -1,0 +1,12 @@
+[package]
+
+name = "png-sys"
+version = "1.6.3"
+authors = ["The Servo Project Developers"]
+
+build = "make -f makefile.cargo"
+
+[lib]
+
+name = "png-sys"
+path = "lib.rs"
