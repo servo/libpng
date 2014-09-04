@@ -1,4 +1,14 @@
+ifeq (androideabi,$(findstring androideabi,$(TARGET)))
+
+CC := $(TARGET)-gcc
+AR := $(TARGET)-ar
+
+else
+
 CC ?= gcc
+AR ?= ar
+
+endif
 
 CFLAGS += -O3 -fPIC
 
